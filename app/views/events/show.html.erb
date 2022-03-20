@@ -1,0 +1,35 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/rrweb@latest/dist/rrweb.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/rrweb-player@latest/dist/style.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/rrweb@latest/dist/rrweb.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/rrweb-player@latest/dist/index.js"></script>
+
+<div class="vh-100 d-flex justify-content-center align-items-center">
+    <div class="row ">
+      <div class="col">
+        <div id="replay_video"></div>
+      </div>
+    </div>
+  </div>
+
+
+<script>
+  window.addEventListener("load", function(){
+    console.log("replaying ...");
+    const events = <%= raw @event.data.to_json %>;
+    console.log(events)
+
+    new rrwebPlayer({
+      target:document.getElementById("replay_video"), // customizable root element
+      props: {
+        events: events,
+        UNSAFE_replayCanvas: true,
+        skipInactive: false,
+      },
+    });
+  });
+
+  </script>
+
+
